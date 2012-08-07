@@ -114,14 +114,16 @@
   renderer.addBox({ size: 20, wireframe: true });
 
   (function() {
-    var num = 7;
-    var j = 4;
-    for ( var i = 0; i < num; ++i ) {
-      for ( var k = 0; k < num; ++k ) {
-        createCube( (i - (num - 1) / 2) * 3, j, (k - (num - 1) / 2) * 3 );
+    var num = 2;
+    var numY = 1;
+    for( var j = 1; j <= numY; j++ ) {
+      for ( var i = 0; i < num; ++i ) {
+        for ( var k = 0; k < num; ++k ) {
+          createCube( (i - (num - 1) / 2) * 3, 4 + j * 3, (k - (num - 1) / 2) * 3 );
 
-        renderer.addBox({ size: 1 });
+          renderer.addBox({ size: 1 });
 
+        }
       }
     }
   }());
@@ -137,10 +139,10 @@
     var time = 0;
 
     var step = function () {
-      time += 16;
+      time += 160;
 
       stats.begin();
-      dynamicsWorld.stepSimulation( 0.016 );
+      dynamicsWorld.stepSimulation( 0.16, 20, 0.016 );
       stats.end();
 
       for ( var i = 0; i < dynamicsWorld.getNumCollisionObjects(); ++i ) {
